@@ -27,7 +27,6 @@ export const sendEmailController = async (req, res) => {
         to: to,
         subject: subject,
         body: html,
-        status: "Sent",
         ...(newAttachments?.length >= 1 && { attachments: newAttachments }),
       },
     });
