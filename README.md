@@ -6,6 +6,8 @@ Bu proje, Node.js kullanarak e-posta gönderme işlemi gerçekleştiren bir uygu
 
 - Node.js
 - Express.js
+- Prisma
+- PostgreSQL
 - Nodemailer
 - Multer (Dosya yükleme için)
 
@@ -39,6 +41,8 @@ EMAIL_USER=your-email@example.com
 EMAIL_PASS=your-email-password
 
 UPLOAD_FILE_SIZE=1
+
+DATABASE_URL="databaseurl"
 ```
 
 ### 4. E-posta Göndermek İçin Gerekli Ayarlar
