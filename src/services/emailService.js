@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
   auth: emailConfig.auth,
 });
 
-export const sendEmail = async (to, name, subject, text, html, attachments) => {
+export const sendEmail = async (to, name, subject, html, attachments) => {
   try {
     const mailOptions = {
       from: {
@@ -16,14 +16,12 @@ export const sendEmail = async (to, name, subject, text, html, attachments) => {
       },
       to,
       subject,
-      text,
       html,
       attachments,
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log(`E-posta gönderildi: ${info.messageId}`);
-    return info;
+    return info?.messageId;
   } catch (error) {
     console.error("E-posta gönderme hatası:", error);
     throw new Error("E-posta gönderilemedi");

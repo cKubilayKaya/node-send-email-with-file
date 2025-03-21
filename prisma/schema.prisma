@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Email {
+  id          String   @id @default(uuid()) // E-posta kaydının benzersiz ID'si
+  to          String // Gönderilen e-posta adresi
+  subject     String // E-posta konusu
+  body        String // E-posta içeriği
+  status      String? // E-posta gönderim durumu (örneğin: 'sent', 'failed', 'queued')
+  attachments String[] // E-posta ek dosya
+  createdAt   DateTime @default(now()) // Kayıt oluşturulma tarihi
+}
