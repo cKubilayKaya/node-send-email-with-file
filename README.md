@@ -54,13 +54,13 @@ Sunucuyu başlatmak için şu komutu çalıştırın:
 npm run dev
 ```
 
-### API Kullanımı
+# API Kullanımı
 
-## POST `/send-email`
+### POST `/send-email`
 
 Bu endpoint, e-posta göndermek için kullanılır. İstek, aşağıdaki parametrelerle yapılmalıdır:
 
-# Body Parametreleri
+### Body Parametreleri
 
 - **to**: Gönderilecek e-posta adresi (String)
 - **subject**: E-posta konusu (String)
@@ -68,7 +68,7 @@ Bu endpoint, e-posta göndermek için kullanılır. İstek, aşağıdaki paramet
 - **html**: HTML formatında içerik (String)
 - **files**: Dosya ekleri (Array of files - Maksimum 5 dosya)
 
-# Örnek İstek
+### Örnek İstek
 
 ```bash
 POST http://localhost:5000/send-email
@@ -90,7 +90,7 @@ Content-Type: multipart/form-data
 }
 ```
 
-# Başarılı Yanıt
+### Başarılı Yanıt
 
 E-posta başarılı bir şekilde gönderildiyse, aşağıdaki gibi bir yanıt alırsınız:
 
@@ -101,7 +101,7 @@ E-posta başarılı bir şekilde gönderildiyse, aşağıdaki gibi bir yanıt al
 }
 ```
 
-# Hatalı Yanıt
+### Hatalı Yanıt
 
 E-posta gönderme sırasında bir hata oluşursa, aşağıdaki gibi bir hata mesajı alırsınız:
 
@@ -112,7 +112,7 @@ E-posta gönderme sırasında bir hata oluşursa, aşağıdaki gibi bir hata mes
 
 ```
 
-### Dosya Yükleme
+# Dosya Yükleme
 
 E-posta ile dosya ekleri gönderebilirsiniz. Yükleme işlemi **Multer** kütüphanesi ile yapılır ve şu özellikler geçerlidir:
 
@@ -120,7 +120,7 @@ E-posta ile dosya ekleri gönderebilirsiniz. Yükleme işlemi **Multer** kütüp
 - **Maksimum dosya sayısı**: 5 (Bu sınır aşıldığında hata mesajı alınır)
 - **Geçerli dosya türleri**: JPEG, PNG, GIF, PDF
 
-### Proje Yapısı
+# Proje Yapısı
 
 ```bash
 /src
