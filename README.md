@@ -28,7 +28,7 @@ npm install
 
 ### 3. .env Dosyasını Konfigüre Edin
 
-Proje kök dizininde .env dosyasını oluşturun ve aşağıdaki gibi yapılandırın:
+Proje kök dizininde `.env` dosyasını oluşturun ve aşağıdaki gibi yapılandırın:
 
 ```bash
 APP_PORT=5000
@@ -43,7 +43,7 @@ UPLOAD_FILE_SIZE=1
 
 ### 4. E-posta Göndermek İçin Gerekli Ayarlar
 
-- emailConfig.js dosyasındaki SMTP ayarlarını, kullandığınız e-posta servisiyle uyumlu olacak şekilde yapılandırın.
+- `emailConfig.js` dosyasındaki SMTP ayarlarını, kullandığınız e-posta servisiyle uyumlu olacak şekilde yapılandırın.
 - Nodemailer ile e-posta gönderebilmek için ilgili SMTP sunucu bilgilerini kullanmanız gerekmektedir.
 
 ### 5. Sunucuyu Başlatın
@@ -56,7 +56,7 @@ npm run dev
 
 ### API Kullanımı
 
-## POST /send-email
+## POST `/send-email`
 
 Bu endpoint, e-posta göndermek için kullanılır. İstek, aşağıdaki parametrelerle yapılmalıdır:
 
@@ -114,7 +114,7 @@ E-posta gönderme sırasında bir hata oluşursa, aşağıdaki gibi bir hata mes
 
 ### Dosya Yükleme
 
-E-posta ile dosya ekleri gönderebilirsiniz. Yükleme işlemi Multer kütüphanesi ile yapılır ve şu özellikler geçerlidir:
+E-posta ile dosya ekleri gönderebilirsiniz. Yükleme işlemi **Multer** kütüphanesi ile yapılır ve şu özellikler geçerlidir:
 
 - **Maksimum dosya boyutu**: 1MB
 - **Maksimum dosya sayısı**: 5 (Bu sınır aşıldığında hata mesajı alınır)
