@@ -60,7 +60,7 @@ npm run dev
 
 # API Kullanımı
 
-### POST `/send-email`
+### POST `/api/send-email`
 
 Bu endpoint, e-posta göndermek için kullanılır. İstek, aşağıdaki parametrelerle yapılmalıdır:
 
@@ -75,7 +75,7 @@ Bu endpoint, e-posta göndermek için kullanılır. İstek, aşağıdaki paramet
 ### Örnek İstek
 
 ```bash
-POST http://localhost:5000/send-email
+POST http://localhost:5000/api/send-email
 Content-Type: multipart/form-data
 
 {
@@ -105,15 +105,98 @@ E-posta başarılı bir şekilde gönderildiyse, aşağıdaki gibi bir yanıt al
 }
 ```
 
-### Hatalı Yanıt
+### GET `/api/get-emails`
 
-E-posta gönderme sırasında bir hata oluşursa, aşağıdaki gibi bir hata mesajı alırsınız:
+Bu endpoint, bütün e-postaları döndürmek için kullanılır. İstek, aşağıdaki parametrelerle yapılmalıdır:
+
+### Örnek İstek
+
+```bash
+GET http://localhost:5000/api/get-emails
+```
+
+### Başarılı Yanıt
+
+E-posta başarılı bir şekilde gönderildiyse, aşağıdaki gibi bir yanıt alırsınız:
 
 ```json
 {
-  "error": "E-posta gönderilemedi"
+    "success": true,
+    "data": [
+        {
+            "id": "5ca32aef-4b5f-4a07-a70e-7fa2ad438b3c",
+            "to": "kkubilay24@gmail.com",
+            "subject": "Şifre Sıfırlama Talebi",
+            "body": "<h1>Şifre sıfırlama kodu:</h1>",
+            "attachments": [
+                "src/uploads/mail/icons8-5-star-hotel-32 (1).png",
+                "src/uploads/mail/kubilay-kaya-frontend-cv.pdf"
+            ],
+            "createdAt": "2025-03-21T09:23:54.559Z"
+        },
+        {
+            "id": "50a5ca82-587b-49af-95b1-87ef27fb8d0c",
+            "to": "vkubilaykaya@gmail.com",
+            "subject": "Giriş Yapma Sorunu",
+            "body": "<h1>sorun var:</h1>",
+            "attachments": [
+                "src/uploads/mail/test.jpg"
+            ],
+            "createdAt": "2025-03-21T09:25:45.130Z"
+        },
+        {
+            "id": "af37598f-abe6-45a0-8a0a-78c90f97784c",
+            "to": "kkubilay24@gmail.com",
+            "subject": "asdadada",
+            "body": "<h1>erererevar:</h1>",
+            "attachments": [
+                "src/uploads/mail/test.jpg"
+            ],
+            "createdAt": "2025-03-21T09:31:01.855Z"
+        },
+        {
+            "id": "3b888281-8f81-4674-90d3-147d714858d1",
+            "to": "kkubilay24@gmail.com",
+            "subject": "Şifre Sıfırlama Talebi",
+            "body": "<h1>Şifre Sıfırlama Kodu:</h1>",
+            "attachments": [
+                "src/uploads/mail/test.jpg"
+            ],
+            "createdAt": "2025-03-21T09:32:33.418Z"
+        }
+    ]
 }
+```
 
+### GET `/api/get-email/:id`
+
+Bu endpoint, belirli id'ye ait bir maili döndürmek için kullanılır. İstek, aşağıdaki parametrelerle yapılmalıdır:
+
+### Örnek İstek
+
+```bash
+GET http://localhost:5000/api/get-email/5ca32aef-4b5f-4a07-a70e-7fa2ad438b3c
+```
+
+### Başarılı Yanıt
+
+E-posta başarılı bir şekilde gönderildiyse, aşağıdaki gibi bir yanıt alırsınız:
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": "5ca32aef-4b5f-4a07-a70e-7fa2ad438b3c",
+        "to": "kkubilay24@gmail.com",
+        "subject": "Şifre Sıfırlama Talebi",
+        "body": "<h1>Şifre sıfırlama kodu:</h1>",
+        "attachments": [
+            "src/uploads/mail/icons8-5-star-hotel-32 (1).png",
+            "src/uploads/mail/kubilay-kaya-frontend-cv.pdf"
+        ],
+        "createdAt": "2025-03-21T09:23:54.559Z"
+    }
+}
 ```
 
 # Dosya Yükleme
@@ -123,25 +206,3 @@ E-posta ile dosya ekleri gönderebilirsiniz. Yükleme işlemi **Multer** kütüp
 - **Maksimum dosya boyutu**: 1MB
 - **Maksimum dosya sayısı**: 5 (Bu sınır aşıldığında hata mesajı alınır)
 - **Geçerli dosya türleri**: JPEG, PNG, GIF, PDF
-
-# Proje Yapısı
-
-```bash
-/src
-  /config
-    emailConfig.js        # E-posta yapılandırma dosyası
-  /controllers
-    emailController.js    # E-posta gönderme işlemleri
-  /middleware
-    uploadMiddleware.js   # Multer hata yönetimi
-  /routes
-    emailRoutes.js        # E-posta gönderme rotası
-  /services
-    emailService.js       # E-posta gönderme servisi
-  /uploads
-    /mail                 # Yüklenen dosyaların burada saklandığı klasör
-  /utils
-    upload.js             # Multer konfigürasyonu ve dosya yükleme ayarları
-  app.js                  # Ana uygulama dosyası
-  server.js               # Express sunucu başlatma
-```
